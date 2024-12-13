@@ -8,7 +8,7 @@ db_password=$(openssl rand -base64 16) # Generate a random password
 txt_file="/home/pterodactyl_credentials.txt"
 admin_email="changethis@luxehost.nl"  # Set your desired email address here
 admin_password=$(openssl rand -base64 16)  # Generate a random password for the admin user
-
+dbnode_password=$(openssl rand -base64 16) 
 
 # Detect public IP or local IP
 ip_address=$(hostname -I | awk '{print $1}')
@@ -80,7 +80,7 @@ echo "Creating database and user..."
 sleep 3
 mysql -u root -e "CREATE DATABASE ${db_name};"
 mysql -u root -e "CREATE USER '${db_user}'@'127.0.0.1' IDENTIFIED BY '${db_password}';"
-mysql -u root -e "GRANT ALL PRIVILEGES ON ${db_name}.* TO '${db_user}'@'127.0.0.1';"
+mysql -u root -e "GRANT ALL PRIVILEGES ON ${db_name}.* TO '${db_user}'@'127.0.0.1';"\
 mysql -u root -e "FLUSH PRIVILEGES;"
 
 # Set up environment variables
@@ -190,6 +190,7 @@ sleep 1
 
 # Install Pterodactyl Daemon
 echo "Installing Pterodactyl Daemon..."
+sleep 2
 curl -sSL https://get.docker.com/ | CHANNEL=stable bash
 sudo systemctl enable --now docker
 GRUB_CMDLINE_LINUX_DEFAULT="swapaccount=1"
@@ -197,16 +198,32 @@ sudo mkdir -p /etc/pterodactyl
 curl -L -o /usr/local/bin/wings "https://github.com/pterodactyl/wings/releases/latest/download/wings_linux_$([[ "$(uname -m)" == "x86_64" ]] && echo "amd64" || echo "arm64")"
 sudo chmod u+x /usr/local/bin/wings
 
+# Install Pterodactyl Node Database
+echo "Creating Pterodactyl Node Database..."
+sleep 2
+mysql -u root -p
+CREATE USER 'pterodactyluser'@'127.0.0.1' IDENTIFIED BY '${dbnode_password}';"
+GRANT ALL PRIVILEGES ON *.* TO 'pterodactyluser'@'127.0.0.1' WITH GRANT OPTION;
+exit
+
 
 # Create Pterodactyl credentials file
 echo "Creating credentials file in /home directory..."
-echo "Hostname: ${hostname}" > ${txt_file}
-echo "Username: ${db_user}" >> ${txt_file}
-echo "Password: ${db_password}" >> ${txt_file}
-echo "Database: ${db_name}" >> ${txt_file}
-echo "IP Address: ${ip_address}" >> ${txt_file}
+echo "Panel URL: http://${ip_address}" >> ${txt_file}
+PLEASE CHANGE THE LOGIN
+echo "Admin Username: ${hostname}" >> ${txt_file}
 echo "Admin Email: ${admin_email}" >> ${txt_file}
 echo "Admin Password: ${admin_password}" >> ${txt_file}
 
+echo "Database Username: ${db_user}" >> ${txt_file}
+echo "Database Password: ${db_password}" >> ${txt_file}
+echo "Database Panel: ${db_name}" >> ${txt_file}
+
+echo "Database Node Username: pterodactyluser" >> ${txt_file}
+echo "Database Node Password: ${dbnode_password}" >> ${txt_file}
+echo "Database Host: 127.0.0.1" >> ${txt_file}
+
 # Output completion message
+echo " "
 echo "Pterodactyl installation completed. Credentials are saved in ${txt_file}"
+echo "If this was helpful consider leaving a star on my GitHub repository.
