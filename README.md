@@ -12,7 +12,7 @@ This script automates the installation of the Pterodactyl Panel, allowing you to
 To install the Pterodactyl panel, simply run the following command:
 
 ```bash
-curl -sSL [https://raw.githubusercontent.com/FinnAppel/Pterodactyl-Update-Script/main/update.sh] | sudo bash
+curl -sSL https://raw.githubusercontent.com/FinnAppel/Pterodactyl-Unattended-Install/refs/heads/main/install.sh sudo bash
 ```
 Sit back and relax! The script will handle the installation process for you.
 
