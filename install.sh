@@ -226,4 +226,4 @@ echo "Database Host: 127.0.0.1" >> ${txt_file}
 # Output completion message
 echo " "
 echo "Pterodactyl installation completed. Credentials are saved in ${txt_file}"
-echo "If this was helpful consider leaving a star on my GitHub repository.
+echo "If this was helpful consider leaving a star on my GitHub repository."
