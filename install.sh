@@ -4,7 +4,7 @@
 hostname=$(hostname)
 db_user="pterodactyl"
 db_name="panel"
-db_password=$(openssl rand -base64 16)  # Generate a random password
+db_password=$(openssl rand -base64 16) # Generate a random password
 txt_file="/home/pterodactyl_credentials.txt"
 admin_email="changethis@luxehost.nl"  # Set your desired email address here
 admin_password=$(openssl rand -base64 16)  # Generate a random password for the admin user
@@ -40,6 +40,8 @@ fi
 echo "Updating system and installing dependencies..."
 sleep 2
 
+export DEBIAN_FRONTEND=noninteractive
+
 # Add "add-apt-repository" command
 apt -y install software-properties-common curl apt-transport-https ca-certificates gnupg
 
@@ -55,6 +57,8 @@ curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | sudo bash
 
 # Update repositories list
 apt update
+apt -y upgrade
+
 
 # Install Dependencies
 apt -y install php8.3 php8.3-{common,cli,gd,mysql,mbstring,bcmath,xml,fpm,curl,zip} mariadb-server nginx tar unzip git redis-server
@@ -87,10 +91,18 @@ sed -i "s/DB_USERNAME=pterodactyl/DB_USERNAME=${db_user}/g" .env
 sed -i "s/DB_DATABASE=pterodactyl/DB_DATABASE=${db_name}/g" .env
 
 
-php artisan migrate --seed --force
-
 php artisan key:generate --force
 
+echo "Running Pterodactyl database setup..."
+sleep 2
+  php artisan p:environment:database \
+    --host="127.0.0.1" \
+    --port="3306" \
+    --database="${db_name}" \
+    --username="${db_user}" \
+    --password="${db_password}"
+
+php artisan migrate --seed --force
 
 # Run the environment setup command (no prompts)
 echo "Running Pterodactyl environment setup..."
@@ -109,15 +121,6 @@ sleep 2
     --redis-port="6379" \
     --settings-ui=true \
     --telemetry=no
-
-echo "Running Pterodactyl database setup..."
-sleep 2
-  php artisan p:environment:database \
-    --host="127.0.0.1" \
-    --port="3306" \
-    --database="${db_name}" \
-    --username="${db_user}" \
-    --password="${db_password}"
 
 
 echo "Running Pterodactyl permissions setup..."
