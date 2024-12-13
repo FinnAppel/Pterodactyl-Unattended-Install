@@ -8,12 +8,6 @@ This script automates the installation of the Pterodactyl Panel, allowing you to
 - Saves all generated credentials in `/home/pterodactyl.txt`.
 - Minimal user input required — just run the script and walk away!
 
-## Prerequisites
-Before running the script, ensure the following:
-
-1. You are using a supported Linux distribution (e.g., Ubuntu, Debian, CentOS).
-2. You have root or sudo privileges.
-
 ## Usage
 To install the Pterodactyl panel, simply run the following command:
 
@@ -30,6 +24,14 @@ Once the installation is complete, you can find the following details in `/home/
 - Database Name
 - Database User
 - Database Password
+
+## Supported Linux (Unix) OS
+
+| Linux Distro | Support          |
+| ------- | ------------------ |
+| Ubuntu | :heavy_check_mark: Supported|
+| Debian | :heavy_check_mark: Unsupported|
+| CentOS | :heavy_check_mark: Unsupported|
 
 ## Post-Installation
 1. Access your Pterodactyl Panel via your server's public IP.
