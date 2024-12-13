@@ -90,19 +90,9 @@ sed -i "s/DB_PASSWORD=secret/DB_PASSWORD=${db_password}/g" .env
 sed -i "s/DB_USERNAME=pterodactyl/DB_USERNAME=${db_user}/g" .env
 sed -i "s/DB_DATABASE=pterodactyl/DB_DATABASE=${db_name}/g" .env
 
-
+echo "Running Pterodactyl API Key setup..."
 php artisan key:generate --force
-
-echo "Running Pterodactyl database setup..."
 sleep 2
-  php artisan p:environment:database \
-    --host="127.0.0.1" \
-    --port="3306" \
-    --database="${db_name}" \
-    --username="${db_user}" \
-    --password="${db_password}"
-
-php artisan migrate --seed --force
 
 # Run the environment setup command (no prompts)
 echo "Running Pterodactyl environment setup..."
@@ -122,6 +112,17 @@ sleep 2
     --settings-ui=true \
     --telemetry=no
 
+
+echo "Running Pterodactyl database setup..."
+sleep 2
+  php artisan p:environment:database \
+    --host="127.0.0.1" \
+    --port="3306" \
+    --database="${db_name}" \
+    --username="${db_user}" \
+    --password="${db_password}"
+
+php artisan migrate --seed --force
 
 echo "Running Pterodactyl permissions setup..."
 sleep 2
