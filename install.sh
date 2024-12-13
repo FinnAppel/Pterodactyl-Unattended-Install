@@ -155,7 +155,7 @@ sudo systemctl enable --now pteroq.service
 # Configure Nginx with dynamic IP
 echo "Configuring Nginx for IP: ${ip_address}..."
 
-sleep 3
+sleep 1
 
 rm /etc/nginx/sites-enabled/default
 
@@ -190,7 +190,7 @@ sleep 1
 
 # Install Pterodactyl Daemon
 echo "Installing Pterodactyl Daemon..."
-sleep 2
+sleep 1
 curl -sSL https://get.docker.com/ | CHANNEL=stable bash
 sudo systemctl enable --now docker
 GRUB_CMDLINE_LINUX_DEFAULT="swapaccount=1"
@@ -200,11 +200,10 @@ sudo chmod u+x /usr/local/bin/wings
 
 # Install Pterodactyl Node Database
 echo "Creating Pterodactyl Node Database..."
-sleep 2
-mysql -u root -p
-CREATE USER 'pterodactyluser'@'127.0.0.1' IDENTIFIED BY '${dbnode_password}';"
-GRANT ALL PRIVILEGES ON *.* TO 'pterodactyluser'@'127.0.0.1' WITH GRANT OPTION;
-exit
+sleep 1
+mysql -u root -e "CREATE USER 'pterodactyluser'@'127.0.0.1' IDENTIFIED BY '${dbnode_password}';"
+mysql -u root -e "GRANT ALL PRIVILEGES ON panel.* TO 'pterodactyluser'@'127.0.0.1';"\
+mysql -u root -e "FLUSH PRIVILEGES;"
 
 
 # Create Pterodactyl credentials file
