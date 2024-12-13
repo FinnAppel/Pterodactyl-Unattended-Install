@@ -13,6 +13,27 @@ admin_password=$(openssl rand -base64 16)  # Generate a random password for the 
 # Detect public IP or local IP
 ip_address=$(hostname -I | awk '{print $1}')
 
+# Detect operating system
+OS="$(awk -F= '/^NAME/{print $2}' /etc/os-release | tr -d '\"')"
+
+# Print OS name
+echo     
+echo     
+echo "======================================"
+echo "    Pterodactyl Unattended Install"
+echo "    Your OS: $OS"
+echo "    Checking if your OS is supported."
+echo "======================================"
+echo 
+
+# Check if OS is supported
+if [[ "$OS" == "Ubuntu" ]]; then
+    echo "Your OS is supported. Proceeding with the installation."
+    sleep 4
+else
+    echo "Sorry, your OS: $OS is not supported."
+    exit 1
+fi
 
 # Update and install dependencies
 echo "Updating system and installing dependencies..."
