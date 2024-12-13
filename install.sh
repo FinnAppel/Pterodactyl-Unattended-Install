@@ -25,6 +25,7 @@ echo "    Your OS: $OS"
 echo "    Checking if your OS is supported."
 echo "======================================"
 echo 
+sleep 2
 
 # Check if OS is supported
 if [[ "$OS" == "Ubuntu" ]]; then
