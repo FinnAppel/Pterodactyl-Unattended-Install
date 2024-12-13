@@ -80,7 +80,7 @@ echo "Creating database and user..."
 sleep 3
 mysql -u root -e "CREATE DATABASE ${db_name};"
 mysql -u root -e "CREATE USER '${db_user}'@'127.0.0.1' IDENTIFIED BY '${db_password}';"
-mysql -u root -e "GRANT ALL PRIVILEGES ON ${db_name}.* TO '${db_user}'@'127.0.0.1';"\
+mysql -u root -e "GRANT ALL PRIVILEGES ON ${db_name}.* TO '${db_user}'@'127.0.0.1';"
 mysql -u root -e "FLUSH PRIVILEGES;"
 
 # Set up environment variables
@@ -202,14 +202,15 @@ sudo chmod u+x /usr/local/bin/wings
 echo "Creating Pterodactyl Node Database..."
 sleep 1
 mysql -u root -e "CREATE USER 'pterodactyluser'@'127.0.0.1' IDENTIFIED BY '${dbnode_password}';"
-mysql -u root -e "GRANT ALL PRIVILEGES ON panel.* TO 'pterodactyluser'@'127.0.0.1';"\
+mysql -u root -e "GRANT ALL PRIVILEGES ON panel.* TO 'pterodactyluser'@'127.0.0.1';"
 mysql -u root -e "FLUSH PRIVILEGES;"
+
 
 
 # Create Pterodactyl credentials file
 echo "Creating credentials file in /home directory..."
 echo "Panel URL: http://${ip_address}" >> ${txt_file}
-PLEASE CHANGE THE LOGIN
+echo "PLEASE CHANGE THE LOGIN" >> ${txt_file}
 echo "Admin Username: ${hostname}" >> ${txt_file}
 echo "Admin Email: ${admin_email}" >> ${txt_file}
 echo "Admin Password: ${admin_password}" >> ${txt_file}
