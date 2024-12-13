@@ -30,8 +30,8 @@ Once the installation is complete, you can find the following details in `/home/
 | Linux Distro | Support          |
 | ------- | ------------------ |
 | Ubuntu | :heavy_check_mark: Supported|
-| Debian | :heavy_check_mark: Unsupported|
-| CentOS | :heavy_check_mark: Unsupported|
+| Debian | :x: Unsupported|
+| CentOS | :x: Unsupported|
 
 ## Post-Installation
 1. Access your Pterodactyl Panel via your server's public IP.
