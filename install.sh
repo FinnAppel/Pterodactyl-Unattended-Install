@@ -203,7 +203,7 @@ curl -s https://raw.githubusercontent.com/FinnAppel/Pterodactyl-Unattended-Insta
 echo "Creating Pterodactyl Node Database..."
 sleep 1
 mysql -u root -e "CREATE USER 'pterodactyluser'@'127.0.0.1' IDENTIFIED BY '${dbnode_password}';"
-mysql -u root -e "GRANT ALL PRIVILEGES ON mysql.* TO 'pterodactyluser'@'127.0.0.1';"
+mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'pterodactyluser'@'127.0.0.1';"
 mysql -u root -e "FLUSH PRIVILEGES;"
 
 systemctl restart mysql
