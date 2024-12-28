@@ -206,6 +206,7 @@ mysql -u root -e "CREATE USER 'pterodactyluser'@'127.0.0.1' IDENTIFIED BY '${dbn
 mysql -u root -e "GRANT ALL PRIVILEGES ON mysql.* TO 'pterodactyluser'@'127.0.0.1';"
 mysql -u root -e "FLUSH PRIVILEGES;"
 
+systemctl restart mysql
 
 
 # Create Pterodactyl credentials file
