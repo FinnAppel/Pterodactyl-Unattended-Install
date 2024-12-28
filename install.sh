@@ -25,7 +25,7 @@ echo "    Your OS: $OS"
 echo "    Checking if your OS is supported."
 echo "======================================"
 echo 
-sleep 2
+sleep 1
 
 # Check if OS is supported
 if [[ "$OS" == "Ubuntu" ]]; then
@@ -38,7 +38,7 @@ fi
 
 # Update and install dependencies
 echo "Updating system and installing dependencies..."
-sleep 2
+sleep 1
 
 export DEBIAN_FRONTEND=noninteractive
 
@@ -68,7 +68,7 @@ curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/loca
 
 # Download Files
 echo "Downloading and installing Pterodactyl Panel..."
-sleep 2
+sleep 1
 mkdir -p /var/www/pterodactyl
 cd /var/www/pterodactyl
 curl -Lo panel.tar.gz https://github.com/pterodactyl/panel/releases/latest/download/panel.tar.gz
@@ -92,11 +92,11 @@ sed -i "s/DB_DATABASE=pterodactyl/DB_DATABASE=${db_name}/g" .env
 
 echo "Running Pterodactyl API Key setup..."
 php artisan key:generate --force
-sleep 2
+sleep 1
 
 # Run the environment setup command (no prompts)
 echo "Running Pterodactyl environment setup..."
-sleep 2
+sleep 1
 
   # Fill in environment:setup automatically
   php artisan p:environment:setup \
@@ -114,7 +114,7 @@ sleep 2
 
 
 echo "Running Pterodactyl database setup..."
-sleep 2
+sleep 1
   php artisan p:environment:database \
     --host="127.0.0.1" \
     --port="3306" \
@@ -125,12 +125,12 @@ sleep 2
 php artisan migrate --seed --force
 
 echo "Running Pterodactyl permissions setup..."
-sleep 2
+sleep 1
 chown -R www-data:www-data /var/www/pterodactyl/*
 * * * * * php /var/www/pterodactyl/artisan schedule:run >> /dev/null 2>&1
 
 echo "Running Pterodactyl user creation..."
-sleep 2
+sleep 1
   php artisan p:user:make \
     --email="${admin_email}" \
     --username="${hostname}" \
@@ -141,7 +141,7 @@ sleep 2
 
 echo "Create the pteroq.service file"
 
-sleep 5
+sleep 1
 
 # Fetch the pteroq.service file from the GitHub repository
 curl -s https://raw.githubusercontent.com/FinnAppel/Pterodactyl-Unattended-Install/main/config/pteroq.service > /etc/systemd/system/pteroq.service
