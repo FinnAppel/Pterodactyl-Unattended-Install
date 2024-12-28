@@ -80,7 +80,7 @@ echo "Creating database and user..."
 sleep 3
 mysql -u root -e "CREATE DATABASE ${db_name};"
 mysql -u root -e "CREATE USER '${db_user}'@'127.0.0.1' IDENTIFIED BY '${db_password}';"
-mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO '${db_user}'@'127.0.0.1';"
+mysql -u root -e "GRANT ALL PRIVILEGES ON panel.* TO '${db_user}'@'127.0.0.1';"
 mysql -u root -e "FLUSH PRIVILEGES;"
 
 # Set up environment variables
@@ -203,7 +203,7 @@ curl -s https://raw.githubusercontent.com/FinnAppel/Pterodactyl-Unattended-Insta
 echo "Creating Pterodactyl Node Database..."
 sleep 1
 mysql -u root -e "CREATE USER 'pterodactyluser'@'127.0.0.1' IDENTIFIED BY '${dbnode_password}';"
-mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'pterodactyluser'@'127.0.0.1';"
+mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'pterodactyluser'@'127.0.0.1' WITH GRANT OPTION;"
 mysql -u root -e "FLUSH PRIVILEGES;"
 
 systemctl restart mysql
