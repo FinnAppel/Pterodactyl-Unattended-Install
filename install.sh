@@ -225,7 +225,23 @@ echo "Database Node Username: pterodactyluser" >> ${txt_file}
 echo "Database Node Password: ${dbnode_password}" >> ${txt_file}
 echo "Database Host: 127.0.0.1" >> ${txt_file}
 
-# Output completion message
+echo "* Wings installation completed"
+echo "*"
+echo "* To continue, you need to configure Wings to run with your panel"
+echo "* Please refer to the official guide, $(hyperlink 'https://pterodactyl.io/wings/1.0/installing.html#configure')"
+echo "* "
+echo "* You can either copy the configuration file from the panel manually to /etc/pterodactyl/config.yml"
+echo "* or, you can use the \"auto deploy\" button from the panel and simply paste the command in this terminal"
+echo "* "
+echo "* You can then start Wings manually to verify that it's working"
+echo "*"
+echo "* sudo wings"
+echo "*"
+echo "* Once you have verified that it is working, use CTRL+C and then start Wings as a service (runs in the background)"
+echo "*"
+echo "* systemctl start wings"
+echo "*"
 echo " "
 echo "Pterodactyl installation completed. Credentials are saved in ${txt_file}"
 echo "If this was helpful consider leaving a star on my GitHub repository."
+
