@@ -6,7 +6,7 @@ db_user="pterodactyl"
 db_name="panel"
 db_password=$(openssl rand -base64 16) # Generate a random password
 txt_file="/home/pterodactyl_credentials.txt"
-admin_email="changethis@luxehost.nl"  # Set your desired email address here
+admin_email="changethis@email.com"  # Set your desired email address here
 admin_password=$(openssl rand -base64 16)  # Generate a random password for the admin user
 dbnode_password=$(openssl rand -base64 16) 
 
