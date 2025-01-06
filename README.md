@@ -29,7 +29,7 @@ Once the installation is complete, you can find the following details in `/home/
 
 | Linux Distro | Supported Versions | Support          |
 | ------------ | ------------------ | ---------------- |
-| Ubuntu       | 22.04, 24.04       | :heavy_check_mark: Supported |
+| Ubuntu       | 22.04, 24.04       | ✅: Supported |
 | Debian       | None               | :x: Unsupported  |
 | CentOS       | None               | :x: Unsupported  |
 
