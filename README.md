@@ -27,11 +27,13 @@ Once the installation is complete, you can find the following details in `/home/
 
 ## Supported Linux (Unix) OS
 
-| Linux Distro | Support          |
-| ------- | ------------------ |
-| Ubuntu | :heavy_check_mark: Supported|
-| Debian | :x: Unsupported|
-| CentOS | :x: Unsupported|
+| Linux Distro | Supported Versions | Support          |
+| ------------ | ------------------ | ---------------- |
+| Ubuntu       | 22.04, 24.04       | :heavy_check_mark: Supported |
+| Debian       | None               | :x: Unsupported  |
+| CentOS       | None               | :x: Unsupported  |
+
+`If your Distro and/or Version is not listed, it is unsupported.`
 
 ## Post-Installation
 1. Access your Pterodactyl Panel via your server's public IP.
