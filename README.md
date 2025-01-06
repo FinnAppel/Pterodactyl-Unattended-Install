@@ -42,7 +42,9 @@ Once the installation is complete, you can find the following details in `/home/
 This script is provided "as is" without any warranty. Use it at your own risk. Ensure you review and understand the script before running it on your system.
 
 ## Contributions
-Feel free to contribute to this project by submitting issues or pull requests. Suggestions for improvement are always welcome!
+Feel free to contribute to this project by submitting issues or pull requests. Suggestions for improvement are always welcome! 
+If you do contribute, please ensure you add proper credits to me for your submission. :)
+
 
 ## License
 This project is licensed under the MIT License. See the `LICENSE` file for details.
